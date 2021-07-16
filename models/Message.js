@@ -1,4 +1,7 @@
+//import mongoose
 const mongoose = require('mongoose');
+
+//make a schema for messages to be used by mongoose
 const messageSchema = new mongoose.Schema({
     chatroom:{
         type: mongoose.Schema.Types.ObjectId,
@@ -16,4 +19,5 @@ const messageSchema = new mongoose.Schema({
     }
 });
 
+//export the model
 module.exports=mongoose.model("Message",messageSchema);

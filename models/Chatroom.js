@@ -1,4 +1,7 @@
+//import mongoose
 const mongoose = require('mongoose');
+
+//create a new schema to be used by mongoose for chatrooms
 const chatroomSchema = new mongoose.Schema({
     name:{
         type: String,
@@ -6,4 +9,5 @@ const chatroomSchema = new mongoose.Schema({
     }
 });
 
+//export the model
 module.exports=mongoose.model("Chatroom",chatroomSchema);
