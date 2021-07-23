@@ -1,4 +1,4 @@
-//hello
+
 //import mongoose and the chatroom model
 const mongoose = require('mongoose');
 const chatroom = require('../models/Chatroom');
@@ -25,3 +25,7 @@ exports.createChatroom = async (req,res)=>{
         message: 'Chatroom successfully created.'
     })
 }
+exports.getAllChatrooms = async (req, res) => {
+    const chatrooms = await chatroom.find({});
+    res.json(chatrooms);
+};

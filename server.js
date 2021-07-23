@@ -28,6 +28,26 @@ require('./models/Chatroom');
 require('./models/Message');
 
 //listen on the port number
- app.listen(portNum, ()=>{
+const server = app.listen(portNum, ()=>{
      console.log(`Listening on port ${portNum}`)
- })
+ });
+
+const io = require('socket.io')(server);
+
+io.use(async (socket, next)=>{
+    try{
+        const token = socket.handshake.query.token;
+        const payload = await jwt.verify(token, process.env.SECRET);
+        socket.userID = payload._id;
+        next();
+    }catch (err){
+
+    }
+})
+io.on('Connection',(socket)=>{
+    console.log('connected: '+socket.userID)
+    socket.on('disconnect',()=>{
+        console.log('Disconnected: '+socket.userID);
+    })
+})
+
