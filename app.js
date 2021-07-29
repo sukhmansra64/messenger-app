@@ -9,6 +9,7 @@ app.use(require('cors')());
 //import routes
 app.use("/user",require('./routes/User'))
 app.use("/chatroom",require('./routes/Chatroom'));
+app.use('/checkToken',require('./routes/tokenRoute'));
 
 //error handlers to help error testing
 const errorHandlers = require('./handlers/errorHandlers');
