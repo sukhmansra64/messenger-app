@@ -10,6 +10,7 @@ app.use(require('cors')());
 app.use("/user",require('./routes/User'))
 app.use("/chatroom",require('./routes/Chatroom'));
 app.use('/checkToken',require('./routes/tokenRoute'));
+app.use('/chatName', require('./routes/chatName'));
 
 //error handlers to help error testing
 const errorHandlers = require('./handlers/errorHandlers');
