@@ -35,8 +35,10 @@ const server = app.listen(portNum, ()=>{
      console.log(`Listening on port ${portNum}`);
  });
 
+//import socket.io for the server
 const io = require('socket.io')(server);
 
+//get the token from the socket and verify it
 io.use(async (socket, next)=>{
     try{
         const token = socket.handshake.query.token;
@@ -47,6 +49,8 @@ io.use(async (socket, next)=>{
         console.log(err.message);
     }
 })
+//console logs when the socket is connected, a user joins a room or leaves a room,
+//and takes the message entered by a user and emits it to the chatroom
 io.on('connect',(socket)=>{
     console.log('connected: '+socket.userID)
 
@@ -80,9 +84,5 @@ io.on('connect',(socket)=>{
         }
     });
 });
-//testing
-String.prototype.toObjectId = function() {
-    let ObjectId = (require('mongoose').Types.ObjectId);
-    return new ObjectId(this.toString());
-};
+
 
